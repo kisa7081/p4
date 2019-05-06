@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ConverterController@index');
+
+Route::get('/convert', 'ConverterController@convert');
+
+Route::get('/refresh', 'ConverterController@refresh');

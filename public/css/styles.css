@@ -1,0 +1,40 @@
+#main {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    border: 1px solid #000000;
+    background-color: #eeeeee;
+}
+
+header {
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 52px;
+}
+
+#info {
+    font-size: 28px;
+}
+
+.alertbox {
+    position: relative;
+    padding: .75em 1.25em;
+    border: 1px solid #000000;
+    width: 50%;
+    margin: .5em auto auto auto;
+}
+
+form {
+    background-color: #ffffff;
+    padding: .75em 1.25em;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.refresh {
+    margin: .5em auto .5em auto;
+}
+
+
