@@ -1,74 +1,76 @@
 @extends('layouts.master')
 
 @section('content')
-    <form method='GET' action='/convert'>
-        <div class='row'>
-            <div class='col text-right'>
-                Enter currency amount:
+    <form method='GET' action='/convert' id='convertForm'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col text-right'>
+                    Enter currency amount:
+                </div>
+                <div class='col text-left'>
+                    <input type='text' name='amount' value='{{old('amount', $amount)}}'/>
+                </div>
+                <br>
             </div>
-            <div class='col text-left'>
-                <input type='text' name='amount' value='{{old('amount', $amount)}}'/>
-            </div>
+            @if($errors->get('amount'))
+                <br>
+                <div class='alertbox alert-danger font-italic'>
+                    {{ $errors->first('amount') }}
+                </div>
+            @endif
             <br>
-        </div>
-        @if($errors->get('amount'))
-            <br>
-            <div class='alertbox alert-danger font-italic'>
-                {{ $errors->first('amount') }}
-            </div>
-        @endif
-        <br>
-        <div class='row'>
-            <div class='col text-right'>
-                Choose currency:
-            </div>
-            <div class='col text-left'>
-                <select name='current' >
-                    @foreach ($currency_list as $currency)
-                        <option value='{{ $currency['code'] }}'
+            <div class='row'>
+                <div class='col text-right'>
+                    Choose currency:
+                </div>
+                <div class='col text-left'>
+                    <select name='current'>
+                        @foreach ($currency_list as $currency)
+                            <option value='{{ $currency['code'] }}'
                             @if ($current == old('current', $currency['code']))
                                 {{'selected'}}
-                            @endif
+                                    @endif
                             >{{$currency['name']}}
-                        </option>
-                    @endforeach
-                </select>
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class='row'>
-            <div class='col text-right'>
-                Choose currency to convert to:
-            </div>
-            <div class='col text-left'>
-                <select name='target' >
-                    @foreach ($currency_list as  $currency)
-                        <option value='{{ $loop->index }}'
+            <br>
+            <div class='row'>
+                <div class='col text-right'>
+                    Choose currency to convert to:
+                </div>
+                <div class='col text-left'>
+                    <select name='target'>
+                        @foreach ($currency_list as  $currency)
+                            <option value='{{ $loop->index }}'
                             @if ($loop->index == old('target', $target))
                                 {{'selected'}}
-                            @endif
+                                    @endif
                             >{{$currency['name']}}
-                        </option>
-                    @endforeach
-                </select>
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class='row'>
-            <div class='col text-right'>
-                Round value to nearest whole number?
-            </div>
-            <div class='col text-left'>
-                <input type='checkbox' name='round' value='true'
+            <br>
+            <div class='row'>
+                <div class='col text-right'>
+                    Round value to nearest whole number?
+                </div>
+                <div class='col text-left'>
+                    <input type='checkbox' name='round' value='true'
                     @if(old('round', $round))
                         {{'checked'}}
-                    @endif
-                >
+                            @endif
+                    >
+                </div>
             </div>
+            <br>
+            <input type='submit' value='Convert' class='btn btn-primary'>
+            <br>
         </div>
-        <br>
-        <input type='submit' value='Convert' class='btn btn-primary'>
-        <br>
     </form>
     @if (isset($converted) && (!isset($errors) || count($errors) == 0))
         <div class='alertbox alert-info font-weight-bold'>

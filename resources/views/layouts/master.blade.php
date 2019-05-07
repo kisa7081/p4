@@ -11,20 +11,20 @@
 </head>
 
 <body class='mt-4'>
-    <section id='main'>
-        <header>
-            <h1 id='title'>
-                Currency Converter
-            </h1>
-            <hr>
-            <p id='info'>
-                Currency conversion rates are current as of:
-                <br>
-                {{ $ratesTimeStamp }}
-                <br>
-            </p>
-        </header>
-        @yield('content')
-    </section>
+<section id='main'>
+    <header>
+        <h1 id='title'>
+            Currency Converter
+        </h1>
+        <hr>
+        <p id='info'>
+            Currency conversion rates are current as of:
+            <br>
+            {{ $ratesTimeStamp }}
+            <br>
+        </p>
+    </header>
+    @yield('content')
+</section>
 </body>
 </html>

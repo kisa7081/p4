@@ -16,8 +16,8 @@ class ConverterController extends Controller
     public function index(Request $req)
     {
         $conv = $this->getConverter();
-        return view('index'
-        )->with(
+
+        return view('index')->with(
             [
                 'ratesTimeStamp' => $conv->getRatesTimeStamp(),
                 'keys' => $conv->getKeys(),
@@ -86,9 +86,10 @@ class ConverterController extends Controller
     public function choose()
     {
         $conv = $this->getConverter();
-        return view('choose'
-        )->with(
-            ['ratesTimeStamp' => $conv->getRatesTimeStamp(),
+
+        return view('choose')->with(
+            [
+                'ratesTimeStamp' => $conv->getRatesTimeStamp(),
                 'currency_list' => $conv->getAllCurrencies()->toArray()
             ]);
     }
@@ -99,9 +100,10 @@ class ConverterController extends Controller
             'currencies' => 'required'
         ]);
 
-        Currency::whereIn('id', array_values($req->currencies))->update(['display'=> true]);
-        Currency::whereNotIn('id', array_values($req->currencies))->update(['display'=>false]);
+        Currency::whereIn('id', array_values($req->currencies))->update(['display' => true]);
+        Currency::whereNotIn('id', array_values($req->currencies))->update(['display' => false]);
         $this->refreshRates();
+
         return redirect('/');
     }
 
@@ -112,10 +114,10 @@ class ConverterController extends Controller
 
         $tempCollection = Conversion::with('sourceCurrency')->with('targetCurrency')->orderByDesc('timeStamp')->get();
 
-        if($sourceCurrencyId != null) {
+        if ($sourceCurrencyId != null) {
             $tempCollection = $tempCollection->where('source_currency_id', $sourceCurrencyId);
         }
-        if($targetCurrencyId != null){
+        if ($targetCurrencyId != null) {
             $tempCollection = $tempCollection->where('source_currency_id', $targetCurrencyId);
         }
 
@@ -124,17 +126,21 @@ class ConverterController extends Controller
         $conv = $this->getConverter();
 
         return view('history')->with(
-        [
-            'ratesTimeStamp' => $conv->getRatesTimeStamp(),
-            'conversions' => $conversions,
-            'currency_list' => $conv->getAllCurrencies()->toArray(),
-            'source' => $sourceCurrencyId,
-            'target' => $targetCurrencyId
-        ]);
+            [
+                'ratesTimeStamp' => $conv->getRatesTimeStamp(),
+                'conversions' => $conversions,
+                'currency_list' => $conv->getAllCurrencies()->toArray(),
+                'source' => $sourceCurrencyId,
+                'target' => $targetCurrencyId
+            ]);
     }
 
     public function updateHistory(Request $req)
     {
+        $req->validate([
+            'rate' => 'required|numeric|min:0|max:100000000000'
+        ]);
+
         $id = $req->id;
         $rate = $req->rate;
         $amount = $req->amount;
@@ -144,7 +150,6 @@ class ConverterController extends Controller
         Conversion::where('id', $id)->update(['rate' => $rate, 'convertedAmount' => (float)str_replace(',', '', $converted)]);
 
         return redirect('/history');
-
     }
 
     public function deleteHistory(Request $req)
@@ -153,7 +158,6 @@ class ConverterController extends Controller
         Conversion::where('id', $id)->delete();
 
         return redirect('/history');
-
     }
 
     /*
