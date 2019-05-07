@@ -20,3 +20,9 @@ Route::get('/refresh', 'ConverterController@refresh');
 Route::get('/choose', 'ConverterController@choose');
 
 Route::post('/choose', 'ConverterController@saveChoices');
+
+Route::get('/history', 'ConverterController@viewHistory');
+
+Route::put('/history', 'ConverterController@updateHistory');
+
+Route::delete('/history', 'ConverterController@deleteHistory');

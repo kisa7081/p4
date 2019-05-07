@@ -113,9 +113,9 @@ class Converter
      * to the nearest whole number.  Otherwise,
      * it's rounded to the nearest hundredth.
      */
-    public function convert($conversion, float $amount, $round = false)
+    public function convert($rate, float $amount, $round = false)
     {
-        $converted = $amount * (float)$conversion;
+        $converted = $amount * (float)$rate;
 
         $dec_places = $round ? 0 : 2; # ternary operation
 

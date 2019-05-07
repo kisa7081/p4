@@ -77,6 +77,7 @@
     @endif
     <a href='/refresh' class='btn btn-success refresh'>Refresh Rates and Reset Form</a>
     <a href='/choose' class='btn btn-success refresh'>Choose Currencies</a>
+    <a href='/history' class='btn btn-success refresh'>View History</a>
 @endsection
 
 

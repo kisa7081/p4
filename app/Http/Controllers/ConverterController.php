@@ -105,6 +105,57 @@ class ConverterController extends Controller
         return redirect('/');
     }
 
+    public function viewHistory(Request $req)
+    {
+        $sourceCurrencyId = $req->sourceCurrencyId;
+        $targetCurrencyId = $req->targetCurrencyId;
+
+        $tempCollection = Conversion::with('sourceCurrency')->with('targetCurrency')->orderByDesc('timeStamp')->get();
+
+        if($sourceCurrencyId != null) {
+            $tempCollection = $tempCollection->where('source_currency_id', $sourceCurrencyId);
+        }
+        if($targetCurrencyId != null){
+            $tempCollection = $tempCollection->where('source_currency_id', $targetCurrencyId);
+        }
+
+        $conversions = $tempCollection;
+
+        $conv = $this->getConverter();
+
+        return view('history')->with(
+        [
+            'ratesTimeStamp' => $conv->getRatesTimeStamp(),
+            'conversions' => $conversions,
+            'currency_list' => $conv->getAllCurrencies()->toArray(),
+            'source' => $sourceCurrencyId,
+            'target' => $targetCurrencyId
+        ]);
+    }
+
+    public function updateHistory(Request $req)
+    {
+        $id = $req->id;
+        $rate = $req->rate;
+        $amount = $req->amount;
+        $conv = $this->getConverter();
+        $converted = $conv->convert($rate, (float)$amount);
+
+        Conversion::where('id', $id)->update(['rate' => $rate, 'convertedAmount' => (float)str_replace(',', '', $converted)]);
+
+        return redirect('/history');
+
+    }
+
+    public function deleteHistory(Request $req)
+    {
+        $id = $req->id;
+        Conversion::where('id', $id)->delete();
+
+        return redirect('/history');
+
+    }
+
     /*
      * Get the converter object from the cache, or
      * create it and cache it if it doesn't exist yet.
