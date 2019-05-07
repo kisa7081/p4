@@ -24,12 +24,12 @@
             </div>
             <div class='col text-left'>
                 <select name='current' >
-                    @foreach ($currency_list as $code => $value)
-                        <option value='{{ $code }}'
-                            @if ($code == old('current', $current))
+                    @foreach ($currency_list as $currency)
+                        <option value='{{ $currency['code'] }}'
+                            @if ($current == old('current', $currency['code']))
                                 {{'selected'}}
                             @endif
-                            >{{$value}}
+                            >{{$currency['name']}}
                         </option>
                     @endforeach
                 </select>
@@ -42,12 +42,12 @@
             </div>
             <div class='col text-left'>
                 <select name='target' >
-                    @foreach ($currency_list as $code => $value)
+                    @foreach ($currency_list as  $currency)
                         <option value='{{ $loop->index }}'
                             @if ($loop->index == old('target', $target))
                                 {{'selected'}}
                             @endif
-                            >{{$value}}
+                            >{{$currency['name']}}
                         </option>
                     @endforeach
                 </select>
@@ -76,6 +76,7 @@
         </div>
     @endif
     <a href='/refresh' class='btn btn-success refresh'>Refresh Rates and Reset Form</a>
+    <a href='/choose' class='btn btn-success refresh'>Choose Currencies</a>
 @endsection
 
 

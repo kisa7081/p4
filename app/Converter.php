@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Currency;
 
 class Converter
 {
@@ -11,6 +12,8 @@ class Converter
      * base currency dropdown, and the values are used for display.
      */
     private $currency_list;
+
+    private $all_currencies;
 
     /*
      * This is an array of the keys of the $currency_list.
@@ -35,12 +38,10 @@ class Converter
     public function __construct()
     {
         # Set up the values that will be used.
-        $this->currency_list = config('app.currency_list');
-
-        $this->keys = array_keys($this->currency_list);
-
+        $this->currency_list = Currency::getCurrencyList();
+        $this->all_currencies = Currency::getAllCurrencies();
+        $this->keys = explode(',', $this->currency_list->implode('code', ','));
         $this->ratesArray = $this->createRatesArray();
-
         $this->ratesTimeStamp = date("F j, Y g:i a T");
     }
 
@@ -55,6 +56,11 @@ class Converter
     public function getCurrencyList()
     {
         return $this->currency_list;
+    }
+
+    public function getAllCurrencies()
+    {
+        return $this->all_currencies;
     }
 
     /*
@@ -82,7 +88,6 @@ class Converter
             }
             $conversions[$key] = $ar;
         }
-
         return $conversions;
     }
 

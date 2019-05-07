@@ -23,7 +23,7 @@ class CurrenciesTableSeeder extends Seeder
             ["CHF","Swiss Franc", false],
             ["ZAR","Rand", false],
             ["AUD","Australian Dollar", false],
-            ["JPY","Yen", false],
+            ["JPY","Yen", true],
             ["TRY","Turkish Lira", false],
             ["HKD","Hong Kong Dollar", false],
             ["MYR","Malaysian Ringgit", false],
@@ -36,7 +36,7 @@ class CurrenciesTableSeeder extends Seeder
             ["HUF","Forint", false],
             ["GBP","Pound Sterling", true],
             ["MXN","Mexican Peso", true],
-            ["KRW","Won", false],
+            ["KRW","Won", true],
             ["ISK","Iceland Krona", false],
             ["SGD","Singapore Dollar", false],
             ["BRL","Brazilian Real", false],
@@ -44,7 +44,7 @@ class CurrenciesTableSeeder extends Seeder
             ["INR","Indian Rupee", false],
             ["RON","Romanian Leu", false],
             ["CNY","Yuan Renminbi", false],
-            ["SEK","Swedish Krona", false]
+            ["SEK","Swedish Krona", true]
         ];
 
         $count = count($currencyData);

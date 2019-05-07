@@ -16,3 +16,7 @@ Route::get('/', 'ConverterController@index');
 Route::get('/convert', 'ConverterController@convert');
 
 Route::get('/refresh', 'ConverterController@refresh');
+
+Route::get('/choose', 'ConverterController@choose');
+
+Route::post('/choose', 'ConverterController@saveChoices');

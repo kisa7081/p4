@@ -18,6 +18,7 @@ class CreateCurrenciesTable extends Migration
             $table->timestamps();
             $table->text('code');
             $table->text('name');
+            $table->boolean('display');
         });
     }
 
