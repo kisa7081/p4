@@ -22,4 +22,4 @@ Just the course notes and PHP docs.
 I sure hope I didn't diverge.
 
 ## Notes for instructor
-No notes.  I've really enjoyed this class and look forward to maybe using PHP professionally someday.
+No notes.  I've really enjoyed this class and look forward to maybe someday using PHP professionally.
