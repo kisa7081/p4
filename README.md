@@ -1,34 +1,25 @@
 # Project 4
-+ By: *your first and last name*
-+ Production URL: <http://p4.yourdomain.com>
++ By: Daniel McCullough
++ Production URL: <http://p4.beachboffin.com>
 
 ## Feature summary
-*Outline a summary of features that your application has. The following details are from a hypothetical project called "Movie Tracker". Note that it is similar to Foobooks, yet it has its own unique features. Delete this example and replace with your own feature summary*
++ Users can create a conversion on the main page that gets saved to the `conversions` table.
++ Users can navigate to the "Choose Currencies" page to select which currencies they'd like to be able to select in the drop downs.
++ Users can view a history of previous conversions and filter on the "Source Currency" and/or the "Target Currency."
++ On the history page, users can change the conversion rate and recalculate the conversion.  Users may also delete a previous conversion.
 
-+ Visitors can register/log in
-+ Users can add/update/delete movies in their collection (title, release date, director, writer, summary, category)
-+ There's a file uploader that's used to upload post images for each movie
-+ User's can toggle whether movies in their collection are public or private
-+ Each user has a public profile page which presents a short bio about their movie tastes, as well as a list of public movies in their collection. 
-+ Each user has their own account page where they can edit their bio, email, password
-+ Users can clone movies from another user's public collection into their collection
-+ The home page features
-  + a stream of recently added public movies
-  + a list of categories, with a link to each category that shows a page of movies (with links) within that category
-
-  
 ## Database summary
-*Describe the tables and relationships used in your database. Delete the examples below and replace with your own info.*
 
-+ My application has 3 tables in total (`users`, `movies`, `categories`)
-+ There's a many-to-many relationship between `movies` and `categories`
-+ There's a one-to-many relationship between `movies` and `users`
++ My application uses 2 tables in total (`conversions`, `currencies`)
++ There's a one-to-many relationship between `conversions` and `currencies`
+
+The `conversions` table joins the `currencies` table by two columns: `source_currency_id` and `target_currency_id`. 
 
 ## Outside resources
-*Your list of outside resources go here*
+Just the course notes and PHP docs.
 
 ## Code style divergences
-*List any divergences from PSR-1/PSR-2 and course guidelines on code style*
+I sure hope I didn't diverge.
 
 ## Notes for instructor
-*Any notes for me to refer to while grading; if none, omit this section*
+No notes.  I've really enjoyed this class and look forward to maybe using PHP professionally someday.
