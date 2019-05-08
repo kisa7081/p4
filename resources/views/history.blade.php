@@ -7,7 +7,7 @@
                 <legend>Filter Criteria:</legend>
                 <label for='sourceCurrencyId'>Source Currency: </label>
                 <select name='sourceCurrencyId' id='sourceCurrencyId'>
-                    <option></option>
+                    <option value=''>Choose</option>
                     @foreach ($currency_list as $currency)
                         <option value='{{ $currency['id'] }}'
                         @if (isset($source) && $source == $currency['id'])
@@ -20,7 +20,7 @@
                 <br>
                 <label for='targetCurrencyId'>Target Currency: </label>
                 <select name='targetCurrencyId' id='targetCurrencyId'>
-                    <option></option>
+                    <option value=''>Choose</option>
                     @foreach ($currency_list as $currency)
 
                         <option value='{{ $currency['id'] }}'
