@@ -49,7 +49,7 @@
         </div>
         @foreach ($conversions as $conv)
             <div class="row history">
-                <div class="col">{{ $conv->sourceAmount }}</div>
+                <div class="col">{{ $conv->source_amount }}</div>
                 <div class="col">{{ $conv->sourceCurrency->code }}</div>
                 <div class="col">{{ $conv->targetCurrency->code }}</div>
                 <div class="col">
@@ -57,7 +57,7 @@
                         {{method_field('PUT')}}
                         {{ csrf_field() }}
                         <input type='hidden' name='id' value='{{ $conv->id }}'/>
-                        <input type='hidden' name='amount' value='{{ $conv->sourceAmount }}'/>
+                        <input type='hidden' name='amount' value='{{ $conv->source_amount }}'/>
                         <input class="m-2 " name="rate" placeholder="Rate" value='{{$conv->rate}}'>
                         <button class="btn btn-success m-2" type="submit">Update</button>
                     </form>
@@ -67,8 +67,8 @@
                         </div>
                     @endif
                 </div>
-                <div class="col">{{ $conv->convertedAmount }}</div>
-                <div class="col">{{ $conv->timeStamp }}</div>
+                <div class="col">{{ $conv->converted_amount }}</div>
+                <div class="col">{{ $conv->time_stamp }}</div>
                 <div class="col">
                     <form method='POST' action='/history'>
                         {{method_field('DELETE')}}
